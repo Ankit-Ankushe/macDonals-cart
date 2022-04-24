@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart from Menu</title>
+    <style>
+         /* navBar */
+      #outerDiv{
+          height: 70px;
+          display:grid;
+          grid-template-columns: 2fr 3fr 1fr;
+      }
+      #outerDiv>div{
+          display: flex;
+          justify-content: space-evenly;
+          font-size:12px;
+          padding: 2%;
+          
+      }
+      #innerDiv1>h2{
+          font-size: 30px;
+      }
+      #innerDiv1>a>img{
+          height: 10px;
+          width: 50px;
+          padding: 5%;
+      }
+      #cartBox{
+          border: 1px solid black;
+      }
+      #innerDiv3>div{
+          font-size: 19px;
+          font-weight: bold;
+          padding: 5%;
+      }
+      #innerDiv2>div{
+          font-size: 20px;
+          font-family: sans-serif;
+          color: #333333;
+          font-weight: bold;
+      }
+      #clearAll{
+          height: 20px;
+          
+      }
+        /* main body */
+        #main{
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            height: auto;
+        }
+         /* */
+         #menuBox{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            height: auto;
+            gap: 10px;
+            margin-left: 20px;
+            margin-right: 20px;
+      }
+      #menuBox>div{
+          height: auto;
+          padding-bottom: 10px;
+      }
+      #menuBox>div>img{
+          height: 80%;
+          width:100% ;
+          border-radius: 5px;
+      }
+      #menuBox>div>p{
+          font-family: sans-serif;
+      }
+      #p1{
+          font-size: 14px;
+         font-weight: bold;
+         color: #333333;
+      }
+      #p2{
+          font-size: 10px;
+          color: #357471;
+      }
+      #bottomDiv{
+          display:flex;
+          justify-content: space-between;
+          margin:0%;
+          padding: 0%;
+          font-size: 7px;
+      }
+      #bottomDiv>button{
+          background-color:  #2a6dff;
+          border: none;
+          color: white;
+          border-radius: 50%;
+          width: 30px;
+      }
+      /*  */
+      #top>div>img{
+          height: 50%;
+          width: 50%;
+      }
+      #top>div>p{
+          font-size: 18px;
+          font-weight: bold;
+      }
+      #top>div>button{
+          background-color: #2a6dff;
+          border-radius: 60%;
+          font-size: 30px;
+          font-weight: bold;
+          border: none;
+          color: white;
+      }
+      #bottom{
+          margin-left: 10px;
+          font-size: 18px;
+          font-family: sans-serif;
+          font-weight: bold;
+      }
+      #nextButt{
+          background-color: #2a6dff;
+          color: white;
+          height: 50px;
+          font-size: 30px;
+          width: 90%;
+          margin-left: 20px;
+          border: none;
+          text-decoration: none;
+      }
+    </style>
+</head>
+<body>
+     <!-- navBar -->
+   <div id="outerDiv">
+    <div id="innerDiv1">
+        <h2></h2>
+        <h2>Choose Meals</h2>
+    </div>
+    <div id="innerDiv2">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div id="innerDiv3">
+        <div>my Delivery</div>
+        <button id="clearAll">clear all</button>
+    </div>
+  </div>
+
+    <div id="main">
+<!-- -->
+    <div id="menuBox">
+    </div>
+<!--  -->
+    <div id="cartBox">
+        <div id="top"></div>
+        <hr>
+        <div id="bottom">
+            <p>Order Summary</p>
+            
+        </div>
+        <a href="checkout.html"><button id="nextButt">Next</button></a>
+    </div>
+    
+    </div>
+</body>
+<script>
+    
+    var menuData=[
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-spicy-crispy-chicken-sandwich:1-4-product-tile-desktop",
+        dish:"Spicy Crispy chicken sandwich",
+        price:1.22,
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Big-Mac-1:1-4-product-tile-desktop",
+        dish:"big Mac",
+        price:0.99,
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Chicken-McNuggets-4pc-1:1-4-product-tile-desktop",
+        dish:"chicken mcNuggets",
+        price:0.99,
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-fries-small:1-4-product-tile-desktop",
+        dish:"fries",
+        price:0.99,
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Quarter-Pounder-with-Cheese-1:1-4-product-tile-desktop",
+        dish:"quater pounder with cheese",
+        price:0.99
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Premium-Roast-Iced-Coffee-Medium:1-4-product-tile-desktop",
+        dish:"iced coffee",
+        price:1.22
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Egg-McMuffin-1:1-4-product-tile-desktop",
+        dish:"egg mcMuffin",
+        price:1.22
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Sausage-Burrito-1:1-4-product-tile-desktop",
+        dish:"susage burrito",
+        price:1.22
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Bacon-Egg-Cheese-Biscuit-Regular-Size-Biscuit-1:1-4-product-tile-desktop",
+        dish:"bacon, egg and chese biscuit",
+        price:1.22
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Sausage-McMuffin-with-Egg:1-4-product-tile-desktop",
+        dish:"Pork Carnitas",
+        price:0.99
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-qpc-bacon-burger:1-4-product-tile-desktop",
+        dish:"Sesame-Ginger Chicken ",
+        price:0.99
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-Double-Cheeseburger-1:1-4-product-tile-desktop",
+        dish:"Sautéed French Green Beans (11 oz)",
+        price:0.99
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-crispy-chicken-sandwich:1-4-product-tile-desktop",
+        dish:"Chicken Tikka burger",
+        price:0.99
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-mcdonalds-deluxe-crispy-chicken-sandwich:1-4-product-tile-desktop",
+        dish:"Masterful Mash (16 oz)",
+        price:1.22
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/h-mcdonalds-Sausage-Burrito-2-Extra-Value-Meals:1-4-product-tile-desktop",
+        dish:"Masterful Mac & Cheese (15 oz)",
+        price:1.22
+       },
+       {
+        image:"https:assets-global.website-files.com/5d03b4e13011831ae4624b37/6106404a9ca1f30fe0fbb9a9_production-meal-image-50d04c03-029a-4039-ab75-8aecefbdcf43.jpeg",
+        dish:"3 Grilled Chicken Breasts (9.75 oz)",
+        cal:"160Cal | Gluten Free |Single-Serve",
+        price:1.22
+       },
+       {
+        image:"https:assets-global.website-files.com/5d03b4e13011831ae4624b37/61064050a510183577a6c7f7_production-meal-image-ea98e43b-5663-49f6-9c00-8f2b23225bd2.jpeg",
+        dish:"8 Baked Turkey Meatballs (9.98 oz)",
+        cal:"110Cal | Gluten Free |Single-Serve",
+        price:1.12
+       },
+       {
+        image:"https://s7d1.scene7.com/is/image/mcdonalds/t-oreo-mcflurry-snack:1-4-product-tile-desktop",
+        dish:"mcFlurry oreo",
+        cal:"400Cal | Gluten Free |Single-Serve",
+        price:1.12
+       },
+
+   ]
+   var cartData=[]
+
+     var deen=cartData
+     
+     menuData.forEach(function(menuItem){
+         var box = document.createElement("div");
+         
+         
+         
+         var img= document.createElement("img");
+         
+         img.src=menuItem.image;
+         var dishName=document.createElement("p");
+         
+         dishName.innerText=menuItem.dish;
+         dishName.id="p1";
+         
+         
+         var div=document.createElement("div");
+         
+         div.id="bottomDiv"
+         var cal=document.createElement("p");
+         
+         var cartButton=document.createElement("button");
+         
+         cartButton.innerText="+";
+          console.log(cartData)
+         cartButton.addEventListener("click" , function(){
+             console.log(cartData)
+             
+             console.log("press")
+             cartData.push(menuItem);
+             console.log(cartData);
+             localStorage.setItem("cartData",JSON.stringify(cartData))
+             alert("will  be Added !")
+             window.location.reload();
+            });
+            
+            div.append(dishName,cartButton)
+            box.append(img,div,cal);
+            document.querySelector("#menuBox").append(box);
+        });
+        console.log(cartData)
+        
+       
+        // diplay
+    function displayCart(){
+        var showTotal=document.createElement("div");
+        
+        cartData=JSON.parse(localStorage.getItem("cartData"))
+        console.log(cartData)
+        var totalPrice= cartData.reduce(function(sum,ele,index,arr){
+
+        return sum+ + Number(ele.price);
+    }, 9.99);
+
+    var cartLength=cartData.length;
+    console.log(cartData,totalPrice)
+
+    cartData.forEach((cartItem, cartIndex) => {
+          var box1=document.createElement("div");
+           box1.id="box1";
+           var box2=document.createElement("div");
+           box2.id="box2";
+   
+   
+   
+          var img=document.createElement("img");
+          img.src=cartItem.image;
+   
+   
+  var productName=document.createElement("p");
+  productName.innerText=cartItem.dish;
+
+  var price=document.createElement("p")
+  price.innerText=cartItem.price;
+
+  var cartButton=document.createElement("button");
+  cartButton.innerText="-";
+ 
+  cartButton.addEventListener("click" , function(){
+   cartData.splice(cartIndex,1)
+   localStorage.setItem("cartData" , JSON.stringify(cartData))
+   window.location.reload();
+  });
+  document.querySelector("#clearAll").addEventListener("click" , function(){
+   cartData.splice(cartIndex,cartData.length)
+   localStorage.setItem("cartData" , JSON.stringify(cartData))
+   window.location.reload();
+  });
+
+  box1.append(img,productName);
+  box2.append(cartButton);
+  document.querySelector("#top").append(box1,box2);
+});
+if(cartData.length==0){
+var items=document.createElement("p");
+var total=document.createElement("p");
+  items.innerText=cartData.length+" meal";
+  total.innerText="subtotal = $0"
+  document.querySelector("#bottom").append(items,total);
+
+}
+else{
+var items=document.createElement("p");
+var total=document.createElement("p")
+  items.innerText=cartData.length+" meal"
+  total.innerText="subtotal = $"+totalPrice.toFixed(2);
+  document.querySelector("#bottom").append(items,total)
+}
+}
+intervalId = setInterval(displayCart() , 2000)
+
+      
+</script>
+</html>
